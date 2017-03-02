@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="Desafio">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta charset="utf-8">
+<title>Desafio Treasy</title>
+<link rel="stylesheet" href="resources/css/bootstrap.css">
+</head>
+
+<body>
+
+<div class="container-fluid" id="home">
+	<div class="row col-sm-5 centralizando">
+		<div class=" col-sm-9 centralizando">
+			<h1>Acesse sua conta</h1>
+			<form role="form" name="input" id="LoginController" action="LoginController" method="post">
+				<fieldset>
+					<div class="form-group ls-login-user">
+						<label for="mail">E-mail</label>
+						<input class="form-control ls-login-bg-password input-lg" name="mail" id="mail"  type="text" aria-label="E-mail" placeholder="E-mail">
+					</div>
+	 
+					<div class="form-group ls-login-password >
+						
+						<label for="password">Senha</label>
+						<input class="form-control input-lg" id="password" name="password" type="password" aria-label="Senha" placeholder="Senha">
+					</div>
+	 				
+	 				<div class=" login-actions">					
+					<button onclick="enviar();" class="button button-green" type="button" id="btn-send">Entrar</button>
+						<p class="txt-center">Ainda não possui conta?
+							<a href="resources/register/register.html">Faça o cadastro agora mesmo!</a>
+						</p>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- ImportaÃ§Ã£o arquivos javascript que sÃ£o genericos -->
+<script src="resources/js/jquery.js"></script>
+<script src="resources/js/bootstrap.js"></script>
+<script src="resources/js/bootbox.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+<script src="resources/js/module.js"></script>
+</body>
+</html>
