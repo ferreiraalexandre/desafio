@@ -1,4 +1,4 @@
-var app = angular.module("Desafio", [ ' ui.tree ']);
+var app = angular.module("Desafio", []);
 
 app.factory('service', function() {
 	var valor = {};

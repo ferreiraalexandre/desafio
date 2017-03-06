@@ -5,23 +5,23 @@
 <meta charset="utf-8">
 <title>Desafio Treasy</title>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/angular-ui-tree.min.css " >
+<link rel="stylesheet" href="resources/css/angular-ui-tree.min.css">
 </head>
 
 <body>
 
-<div class="container-fluid" id="home">
+<div class="container-fluid" id="home" ng-controller="DesafioController" ng-cloak>
 	<div class="row col-sm-5 centralizando">
 		<div  ui-tree >
-		   <ol  ui-tree-nodes = " "  ng-model = " list " >
-		     <li  ng-repeat = " item na lista "  ui-tree-node >
+		   <ol  ui-tree-nodes = " "  ng-model = "product" >
+		     <li  ng-repeat = "product in listProducts"  ui-tree-node >
 		       <div  ui-tree-handle >
-		         {{título do item}}
+		         {{product.description}}
 		       </div >
-		       <ol  ui-tree-nodes = " "  ng-model = " item.items " >
-		         <li  ng-repeat = " subItem em item.items "  ui-tree-node >
+		       <ol  ui-tree-nodes = " "  ng-model = "item" >
+		         <li  ng-repeat = "item in subList"  ui-tree-node >
 		           <div  ui-tree-handle >
-		             {{SubItem.title}}
+		             {{item.description}}
 		           </div >
 		         </li >
 		       </ol >
@@ -36,7 +36,8 @@
 <script src="resources/js/bootstrap.js"></script>
 <script src="resources/js/bootbox.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-<script src = "resources/angular-ui-tree.js " ></script >
+<script src ="resources/js/angular-ui-tree.js"></script >
 <script src="resources/js/module.js"></script>
+<script src ="index.js"></script >
 </body>
 </html>
