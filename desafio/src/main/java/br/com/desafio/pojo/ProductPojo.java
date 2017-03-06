@@ -8,6 +8,10 @@ public class ProductPojo {
 	private String note;
 	private Long subItem;
 
+	public ProductPojo(String description) {
+		this.description = description;
+	}
+
 	public ProductPojo(Long id, String code, String description, String note, Long subItem) {
 		this.id = id;
 		this.code = code;
