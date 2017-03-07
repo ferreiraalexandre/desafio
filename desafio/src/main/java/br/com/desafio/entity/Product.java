@@ -27,7 +27,7 @@ public class Product {
 	private String note;
 
 	@ManyToOne
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "owner_id")
 	private Product owner;
 
 	public Long getId() {
