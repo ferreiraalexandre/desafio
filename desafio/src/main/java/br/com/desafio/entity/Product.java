@@ -4,6 +4,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.ManyToAny;
 
 @Entity
 public class Product {
@@ -22,8 +26,9 @@ public class Product {
 	@Column(name = "note")
 	private String note;
 
-	@Column(name = "subItem")
-	private Long subItem;
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Product owner;
 
 	public Long getId() {
 		return id;
@@ -57,12 +62,12 @@ public class Product {
 		this.note = note;
 	}
 	
-	public Long getSubItem() {
-		return subItem;
+	public Product getOwner() {
+		return owner;
 	}
 
-	public void setSubItem(Long subItem) {
-		this.subItem = subItem;
+	public void setOwner(Product owner) {
+		this.owner = owner;
 	}
 
 }

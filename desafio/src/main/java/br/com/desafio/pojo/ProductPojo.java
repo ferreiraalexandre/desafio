@@ -6,18 +6,18 @@ public class ProductPojo {
 	private String code;
 	private String description;
 	private String note;
-	private Long subItem;
+	private Long owner;
 
 	public ProductPojo(String description) {
 		this.description = description;
 	}
 
-	public ProductPojo(Long id, String code, String description, String note, Long subItem) {
+	public ProductPojo(Long id, String code, String description, String note, Long owner) {
 		this.id = id;
 		this.code = code;
 		this.description = description;
 		this.note = note;
-		this.setSubItem(subItem);
+		this.owner = owner;
 	}
 	
 	public Long getId() {
@@ -52,12 +52,12 @@ public class ProductPojo {
 		this.note = note;
 	}
 
-	public Long getSubItem() {
-		return subItem;
+	public Long getOwner() {
+		return owner;
 	}
 
-	public void setSubItem(Long subItem) {
-		this.subItem = subItem;
+	public void setOwner(Long owner) {
+		this.owner = owner;
 	}
 	
 }
