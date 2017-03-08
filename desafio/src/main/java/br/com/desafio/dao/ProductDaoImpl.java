@@ -13,15 +13,13 @@ import br.com.desafio.pojo.ProductPojo;
 import br.com.desafio.util.JPAUtil;
 
 @Path("/product")
-public class ProductDaoImpl {
+public class ProductDaoImpl  implements ProductDao {
 	
 	EntityManager manager = JPAUtil.getEntityManager();
 	
 	@GET
 	@Path("/load")
-	public Collection<ProductEntity> loadList(String description){
-		//String hql = "select new " + ProductPojo.class.getName() + "(id, code, description, note, owner_id)  from " +
-		//		Product.class.getSimpleName() ;
+	public Collection<ProductEntity> loadList(int id){
 		String hql = "select o from Product o";
 		Query query = manager.createQuery(hql);
 		@SuppressWarnings("unchecked")
