@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.ManyToAny;
 
 @Entity
-public class Product {
+public class ProductEntity {
 
 	@Id
 	@GeneratedValue
@@ -28,7 +28,7 @@ public class Product {
 
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
-	private Product owner;
+	private ProductEntity owner;
 
 	public Long getId() {
 		return id;
@@ -62,11 +62,11 @@ public class Product {
 		this.note = note;
 	}
 	
-	public Product getOwner() {
+	public ProductEntity getOwner() {
 		return owner;
 	}
 
-	public void setOwner(Product owner) {
+	public void setOwner(ProductEntity owner) {
 		this.owner = owner;
 	}
 
