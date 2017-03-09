@@ -1,18 +1,13 @@
 package br.com.desafio.exception;
 
-public class ProductException extends Exception{
+import br.com.desafio.exception.MainException;
+
+public class ProductException extends MainException {
 
 	private static final long serialVersionUID = 1L;
 
-	public ProductException(String msg) {
-		super(msg);
-	}
-
-	public ProductException(String msg,Throwable t) {
-		super(msg, t);
-	}
-
-	public ProductException(Throwable t) {
-		super("Erro de Conex„o", t);
+	public ProductException() {
+		this.generateObject("Produto existente.",
+				"Gentileza informar um produto que n√£o esteja cadastrada no sistema.");
 	}
 }

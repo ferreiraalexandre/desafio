@@ -6,7 +6,7 @@ app.controller('DesafioController', function($scope, $http, service) {
 	
 	$scope.loadProduct = function(){
 		$http({
-			url: url + "rest/product/load",
+			url: url + "rest/product/listProduct",
 			method: "GET"
 		}).then(function successCallback(response){
 			$scope.subList = response.data;

@@ -1,8 +1,9 @@
-package br.com.desafio.entity;
+package br.com.desafio.object;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,10 +11,10 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.ManyToAny;
 
 @Entity
-public class ProductEntity {
+public class Product {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
 	
@@ -28,7 +29,7 @@ public class ProductEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
-	private ProductEntity owner;
+	private Product owner;
 
 	public Long getId() {
 		return id;
@@ -62,11 +63,11 @@ public class ProductEntity {
 		this.note = note;
 	}
 	
-	public ProductEntity getOwner() {
+	public Product getOwner() {
 		return owner;
 	}
 
-	public void setOwner(ProductEntity owner) {
+	public void setOwner(Product owner) {
 		this.owner = owner;
 	}
 
