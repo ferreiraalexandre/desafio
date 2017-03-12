@@ -9,7 +9,7 @@ public class ProductJPADAO  extends JPAAbstract<Product,Integer> implements Prod
 	
 	public List<Product> getListProduct() {
 		
-		return this.list("SELECT FROM " + this.getEntityName());
+		return this.list("SELECT E FROM " + this.getEntityName() + " E");
 	}
 }
 
