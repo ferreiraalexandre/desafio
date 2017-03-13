@@ -6,12 +6,28 @@
 <title>Desafio Treasy</title>
 <link rel="stylesheet" href="resources/css/bootstrap.css">
 <link rel="stylesheet" href="resources/css/angular-ui-tree.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
 
 <div class="container-fluid" id="home" ng-controller="DesafioController" ng-cloak>
 	<div class="row col-sm-5 centralizando">
+		<h1>Produtos</h1>
+		<div class="col-sm-12 centralizando">
+			<a href="">
+				<i class="material-icons" title="Adicionar" ng-click="editEntry()">add</i>
+			</a>
+			<a href="">
+				<i class="material-icons" title="Editar" ng-click="editEntry()">mode_edit</i>
+			</a>
+			<a href="">
+				<i class="material-icons" title="Remover" ng-click="removeEntry()">delete</i>
+			</a>
+		</div>
+		
+		<label><input type="text" class="form-control" ng-model="criteria" placeholder="Digite para filtrar"></label>
+
 		<div  ui-tree >
 		   <ol  ui-tree-nodes = " "  ng-model = "product" >
 		     <li  ng-repeat = "product in listProducts"  ui-tree-node >
