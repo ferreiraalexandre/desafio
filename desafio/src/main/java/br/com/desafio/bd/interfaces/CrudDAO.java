@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
  * 
  * Interface basica para crud do padrao DAO.
  * 
- * @author bruno_rogerio
+ * @author Alexandre_ferreira
  * @version 1.0.0
  * @since 1.0.0
  *

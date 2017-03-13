@@ -16,7 +16,7 @@ import br.com.desafio.bd.interfaces.CrudDAO;
  * 
  * Classe abstrata que devera ser herdada pelas outras classes JPA DAO.
  * 
- * @author bruno_rogerio
+ * @author alexandre_ferreira
  * @version 1.0.0
  * @since 1.0.0
  *

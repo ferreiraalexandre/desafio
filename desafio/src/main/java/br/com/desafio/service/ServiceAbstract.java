@@ -19,7 +19,7 @@ import br.com.desafio.exception.ValException;
  * 
  * Classe que realiza a implantacao da interface service base.
  * 
- * @author bruno_rogerio
+ * @author Alexandre_ferreira
  * @version 1.0.0
  * @since 1.0.0
  *
