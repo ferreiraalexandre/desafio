@@ -1,36 +1,28 @@
 package br.com.desafio.object;
 
+import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import org.hibernate.annotations.ManyToAny;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
+	private String descricao;
+	private Product categoriaPai;
+	private List<Product> subcategorias;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
-	
-	@Column(name = "code")
-	private String code;
-	
-	@Column(name = "description")
-	private String description;
-	
-	@Column(name = "note")
-	private String note;
-
-	@ManyToOne
-	@JoinColumn(name = "owner_id")
-	private Product owner;
-
+	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
@@ -39,36 +31,32 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
+	@Column(length = 80, nullable = false)
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public String getDescription() {
-		return description;
+	@ManyToOne
+	@JoinColumn(name = "categoria_pai")
+	public Product getCategoriaPai() {
+		return categoriaPai;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCategoriaPai(Product categoriaPai) {
+		this.categoriaPai = categoriaPai;
 	}
 
-	public String getNote() {
-		return note;
+	@OneToMany(mappedBy = "categoriaPai")
+	public List<Product> getSubcategorias() {
+		return subcategorias;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
-	}
-	
-	public Product getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Product owner) {
-		this.owner = owner;
+	public void setSubcategorias(List<Product> subcategorias) {
+		this.subcategorias = subcategorias;
 	}
 
 }

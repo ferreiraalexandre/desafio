@@ -70,21 +70,21 @@ public class RestAbstract<E, ID, SERVICE extends ServiceBase<E, ID>> extends Uti
 	 *            Id do registro da entity.
 	 * @return Respota com o objeto da entity.
 	 */
-	@GET
-	@Path("/{id}")
-	@Produces("application/json")
-	public Response getObject(@PathParam("id") ID id) {
-
-		try {
-			SERVICE service = this.service.newInstance();
-
-			E e = service.getObject(id);
-
-			return getResponseList(e);
-		} catch (Exception e) {
-			return getResponseError(e);
-		}
-	}
+//	@GET
+//	@Path("/{id}")
+//	@Produces("application/json")
+//	public Response getObject(@PathParam("id") ID id) {
+//
+//		try {
+//			SERVICE service = this.service.newInstance();
+//
+//			E e = service.getObject(id);
+//
+//			return getResponseList(e);
+//		} catch (Exception e) {
+//			return getResponseError(e);
+//		}
+//	}
 
 	/**
 	 * 
@@ -165,19 +165,19 @@ public class RestAbstract<E, ID, SERVICE extends ServiceBase<E, ID>> extends Uti
 	 *            Id do registro da entity.
 	 * @return resposta retornando se a exclusao foi bem sucedido ou nao.
 	 */
-	@DELETE
-	@Path("/{id}")
-	@Produces("application/json")
-	public Response remove(@PathParam("id") ID id) {
-
-		try {
-			SERVICE service = this.service.newInstance();
-
-			service.remove(id);
-
-			return getResponseRemove();
-		} catch (Exception e) {
-			return getResponseError(e);
-		}
-	}
+//	@DELETE
+//	@Path("/{id}")
+//	@Produces("application/json")
+//	public Response remove(@PathParam("id") ID id) {
+//
+//		try {
+//			SERVICE service = this.service.newInstance();
+//
+//			service.remove(id);
+//
+//			return getResponseRemove();
+//		} catch (Exception e) {
+//			return getResponseError(e);
+//		}
+//	}
 }

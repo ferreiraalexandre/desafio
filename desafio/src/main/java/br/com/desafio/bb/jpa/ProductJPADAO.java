@@ -1,31 +1,30 @@
 package br.com.desafio.bb.jpa;
 
 import java.util.List;
-
+import javax.persistence.EntityManager;
 import br.com.desafio.bd.interfaces.ProductDAO;
 import br.com.desafio.object.Product;
+import br.com.desafio.util.JPAUtil;
+
 
 public class ProductJPADAO  extends JPAAbstract<Product,Integer> implements ProductDAO{
+	EntityManager manager = JPAUtil.getEntityManager();
 	
 	public List<Product> getListProduct() {
+		return manager.createQuery("from Product where categoriaPai is null", Product.class).getResultList();
 		
-		return this.list("SELECT t1.id,t1.description,t1.note,t1.owner_id E FROM " + this.getEntityName() + " E  AS t1 LEFT JOIN product t2 ON t1.id = t2.owner_id WHERE t2.owner_id IS NULL");
-	}
+		
+//				return this.list("SELECT E FROM " +  Product.class.getSimpleName() + " E "
+//				+ " E LEFT JOIN " +  Product.class.getSimpleName()
+//				+ " P ON E.id = P.owner_id"
+//				+ "  WHERE categoriaPai IS NULL");
+		
 }
+	}
 
-//SELECT t1.id,t1.description,t1.note,t1.owner_id FROM
-//product AS t1 LEFT JOIN product t2
-//ON t1.id = t2.owner_id
-//WHERE t2.owner_id IS NULL;
+//SELECT p1.id,p1.description,p1.code,p1.note,p1.owner_id FROM
+//product AS p1 LEFT JOIN product AS p2
+//ON p1.id = p2.owner_id
+//WHERE p2.owner_id IS NULL;
 
-//SELECT t1.id,t1.description,t1.note,t1.owner_id FROM
-//product AS t1 LEFT JOIN product t2
-//ON t1.id = t2.owner_id
-//WHERE t2.owner_id IS NULL;
-//
-//SELECT t1.description AS lev1, t2.description as lev2, t3.description as lev3, t4.description as lev4
-//FROM product AS t1
-//LEFT JOIN product AS t2 ON t2.owner_id = t1.id
-//LEFT JOIN product AS t3 ON t3.owner_id = t2.id
-//LEFT JOIN product AS t4 ON t4.owner_id = t3.id
-//WHERE t1.description = 'masculino';
+//select n from Node n where parent is null
