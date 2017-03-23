@@ -10,15 +10,24 @@ public class ProductService  extends ServiceAbstract<Product, Integer, ProductDA
 
 	public List<Product> getListProduct(){
 		List<Product> listProduct = this.dao.getListProduct();
-		List<Product> pai = new ArrayList<Product>();
 		
-		for(Product lp : listProduct){
-			if(lp.getOwner() != null){
-			//	lp.setDescription(lp.getDescription());//pai
-				pai.add(lp);
-			}
+		
+		List<Product> sub =  new ArrayList<Product>();
+		
+		for (Product c : listProduct) {
+			c.setDescricao("teste");
+			sub.add(c);
 			
 		}
-		return pai;
+		
+		
+//		for(Product lp : listProduct){
+//			if(lp.getOwner() != null){
+//			//	lp.setDescription(lp.getDescription());//pai
+//				pai.add(lp);
+//			}
+//			
+//		}
+		return sub;
 	}
 }
