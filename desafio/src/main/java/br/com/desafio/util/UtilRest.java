@@ -57,7 +57,7 @@ public class UtilRest {
 				.getResponse(
 						new RestResponse(
 								"Acesso negado.",
-								"Esta funcionalidade não esta dísponivel para seu nível de acesso.",
+								"Esta funcionalidade nÃ£o esta dÃ­sponivel para seu nÃ­vel de acesso.",
 								null), Response.Status.FORBIDDEN);
 	}
 
@@ -66,7 +66,7 @@ public class UtilRest {
 				.getResponse(
 						new RestResponse(
 								"Credenciais invalidas.",
-								"Suas credenciais não são validas para este acesso.",
+								"Suas credenciais nÃ£o sÃ£o validas para este acesso.",
 								null), Response.Status.UNAUTHORIZED);
 	}
 	

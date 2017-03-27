@@ -12,13 +12,13 @@ public class ProductService  extends ServiceAbstract<Product, Integer, ProductDA
 		List<Product> listProduct = this.dao.getListProduct();
 		
 		
-		List<Product> sub =  new ArrayList<Product>();
-		
-		for (Product c : listProduct) {
-			c.setDescricao("teste");
-			sub.add(c);
-			
-		}
+//		List<Product> sub =  new ArrayList<Product>();
+//		
+//		for (Product c : listProduct) {
+//			c.setDescricao("teste");
+//			sub.add(c);
+//			
+//		}
 		
 		
 //		for(Product lp : listProduct){
@@ -28,6 +28,6 @@ public class ProductService  extends ServiceAbstract<Product, Integer, ProductDA
 //			}
 //			
 //		}
-		return sub;
+		return listProduct;
 	}
 }
