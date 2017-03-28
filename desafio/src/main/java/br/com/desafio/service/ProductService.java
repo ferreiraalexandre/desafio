@@ -11,11 +11,10 @@ public class ProductService  extends ServiceAbstract<Product, Integer, ProductDA
 	public List<Product> getListProduct(){
 		List<Product> listProduct = this.dao.getListProduct();
 		
-		
 		List<Product> sub =  new ArrayList<Product>();
 		
 		for (Product c : listProduct) {
-			c.setDescricao("teste");
+			c.getSubcategorias();
 			sub.add(c);
 			
 		}
