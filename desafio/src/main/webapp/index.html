@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html ng-app="Desafio">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta charset="utf-8">
-<title>Desafio Treasy</title>
-<link rel="stylesheet" href="resources/css/bootstrap.css">
-<link rel="stylesheet" href="resources/css/angular-ui-tree.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desafio</title>
+	<link rel="stylesheet" href="resources/css/angular-material.css">
+    <link rel="stylesheet" href="resources/css/material-icons.css"> 
+	<link rel="stylesheet" href="resources/css/bootstrap.css">
+	<link rel="stylesheet" href="resources/css/angular-ui-tree.min.css">
+
+
 </head>
 
 <body>
 
-<div class="container-fluid" id="home" ng-controller="DesafioController" ng-cloak>
+<div class="container-fluid" id="home" ng-controller="DesafioController">
 	<div class="row col-sm-5 centralizando">
 		<h1>Produtos</h1>
 		<div class="col-sm-12 centralizando">
 			<a href="">
-				<i class="material-icons" title="Adicionar" data-toggle="modal" data-target="#myModalProduct" ng-click="editEntry()">add</i>
+				<i class="material-icons" title="Adicionar" ng-click="openModal($event)">add</i>
 			</a>
 			<a href="">
 				<i class="material-icons" title="Editar"  ng-click="editEntry()">mode_edit</i>
@@ -45,63 +49,27 @@
 		   </ol >
 		</div >
 	</div>
-	
-	<!-- Modal -->
-	<div class="modal fade" id="myModalProduct" tabindex="-1" role="dialog"   aria-labelledby="myModalLabel" aria-hidden="true">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <!-- Modal Header -->
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal">
-	                       <span aria-hidden="true">&times;</span>
-	                       <span class="sr-only">Close</span>
-	                </button>
-	                <h4 class="modal-title" id="myModalLabel">Adicionar Produto</h4>
-	            </div>
-	            
-	            <!-- Modal Body -->
-	            <div class="modal-body">
-	                
-	                <form role="form">
-	                  <div class="form-group">
-	                    <label for="exampleInputEmail1">Código</label>
-	                      <input type="text" class="form-control" id="code"/>
-	                  </div>
-	                  <div class="form-group">
-	                    <label for="exampleInputPassword1">Descrição</label>
-	                      <input type="text" class="form-control" id="description"/>
-	                  </div>
-					  <div class="form-group">
-	                    <label for="exampleInputPassword1">Observação</label>
-	                      <input type="text" class="form-control" id="note"/>
-	                  </div>
-
-	                  
-	                </form>
-	                
-	                
-	            </div>
-	            
-	            <!-- Modal Footer -->
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	                <button type="button" class="btn btn-primary">Salvar</button>
-	                <button type="button" class="btn btn-primary">Salvar e Cadastrar Outro</button>
-	            </div>
-	        </div>
-	    </div>
-	</div>
 		
-	
 </div>
 
 <!-- ImportaÃ§Ã£o arquivos javascript que sÃ£o genericos -->
-<script src="resources/js/jquery.js"></script>
-<script src="resources/js/bootstrap.js"></script>
-<script src="resources/js/bootbox.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-<script src ="resources/js/angular-ui-tree.js"></script >
-<script src="resources/js/module.js"></script>
-<script src ="index.js"></script >
+
+		<script src="resources/js/angular.min.js"></script>
+		<script src="resources/js/angular-route.min.js"></script>
+		<script src="resources/js/angular-resource.min.js"></script>
+		<script src="resources/js/angular-animate.min.js"></script>
+		<script src="resources/js/angular-aria.min.js"></script>
+		<script src="resources/js/angular-messages.min.js"></script>
+		<script src="resources/js/angular-material.min.js"></script>
+		<script src="resources/js/angular-material-icons.min.js"></script>
+		<script src="resources/js/angular-ui-tree.js"></script >
+		<script src="resources/js/ui-bootstrap-tpls.min.js"></script>
+		<script src="resources/js/angular-mask.min.js"></script>
+		<script src="resources/js/jquery.js"></script>
+		<script src="resources/js/bootstrap.js"></script>
+		<script src="module.js"></script>
+		<script src="product/services.js"></script>
+		<script src="product/product.js"></script>
+
 </body>
 </html>

@@ -11,6 +11,15 @@ public class ProductService  extends ServiceAbstract<Product, Integer, ProductDA
 	public List<Product> getListProduct(){
 		List<Product> listProduct = this.dao.getListProduct();
 		
+<<<<<<< HEAD
+		List<Product> sub =  new ArrayList<Product>();
+		
+		for (Product c : listProduct) {
+			c.getSubcategorias();
+			sub.add(c);
+			
+		}
+=======
 		
 //		List<Product> sub =  new ArrayList<Product>();
 //		
@@ -19,6 +28,7 @@ public class ProductService  extends ServiceAbstract<Product, Integer, ProductDA
 //			sub.add(c);
 //			
 //		}
+>>>>>>> branch 'master' of https://github.com/ferreiraalexandre/desafio.git
 		
 		
 //		for(Product lp : listProduct){
