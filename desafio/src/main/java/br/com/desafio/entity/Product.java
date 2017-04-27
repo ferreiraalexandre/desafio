@@ -1,4 +1,4 @@
-package br.com.desafio.object;
+package br.com.desafio.entity;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +17,9 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private String descricao;
+	private String code;
+	private String description;
+	private String note;
 	private Product categoriaPai;
 	private List<Product> subcategorias;
 

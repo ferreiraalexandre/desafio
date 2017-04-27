@@ -13,8 +13,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import br.com.desafio.restUtil.UtilRest;
 import br.com.desafio.service.ServiceBase;
-import br.com.desafio.util.UtilRest;
 
 /**
  * 

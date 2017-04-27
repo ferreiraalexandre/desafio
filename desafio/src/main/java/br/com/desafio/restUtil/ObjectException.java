@@ -1,4 +1,4 @@
-package br.com.desafio.util;
+package br.com.desafio.restUtil;
 
 public class ObjectException {
 

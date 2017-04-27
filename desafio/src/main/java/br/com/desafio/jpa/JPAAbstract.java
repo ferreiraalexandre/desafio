@@ -1,4 +1,4 @@
-package br.com.desafio.bb.jpa;
+package br.com.desafio.jpa;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;

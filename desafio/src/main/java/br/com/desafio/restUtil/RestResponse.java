@@ -1,6 +1,7 @@
-package br.com.desafio.util;
+package br.com.desafio.restUtil;
 
-import br.com.desafio.exception.ProductException;
+import br.com.desafio.exception.PrincipalException;
+
 
 public class RestResponse {
 
@@ -10,8 +11,8 @@ public class RestResponse {
 	
 	public RestResponse(Exception e){
 		
-		if(e instanceof ProductException){
-			this.RestResponseMainEx((ProductException) e);
+		if(e instanceof PrincipalException){
+			this.RestResponseMainEx((PrincipalException) e);
 		}else{
 			this.RestResponseEx(e);
 		}
@@ -31,7 +32,7 @@ public class RestResponse {
 		this.data = null;
 	}
 	
-	private void RestResponseMainEx(ProductException e){
+	private void RestResponseMainEx(PrincipalException e){
 		ObjectException obj = e.getObject();
 		
 		this.message = obj.getMessage();
