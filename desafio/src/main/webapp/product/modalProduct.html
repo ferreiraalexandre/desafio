@@ -18,12 +18,19 @@
           <input name="description" ng-model="product.description" id="description" aria-required="true" aria-invalid="true" ng-trim="false">
         </md-input-container>        
       </div>
+     
       <div>
         <md-input-container class="flex">
           <label>Observação</label>
           <input name="note" ng-model="product.note" id="note" aria-required="true" aria-invalid="true" ng-trim="false">
         </md-input-container>        
+     
+        <md-input-container class="flex">
+          <label>Categoria Pai</label>
+          <input name="categoriaPai" ng-model="product.categoriaPai" id="note" aria-required="true" aria-invalid="true" ng-trim="false">
+        </md-input-container>        
       </div>   
+
     </form>
     
   </md-dialog-content>

@@ -14,7 +14,12 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	
 	//Função de adicionar novos usuario
 	$scope.addProduct = function (data) {
-		ProductService.postProduct(data, function (response) {
+		var teste = {
+				data: data,
+				id: data.categoriaPai
+			};
+
+		ProductService.postProduct(teste, function (response) {
 			//ToastService.alert('Usuario adicionada com sucesso!', undefined, 'bottom left', 3000);
 			
 		}),

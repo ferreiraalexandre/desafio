@@ -14,14 +14,16 @@ import br.com.desafio.service.ProductService;
 public class ProductRest extends UtilRest{
 	
 	@POST
-	@Path("/salva")
+	@Path("/save")
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response salva( String json){
+	public Response save( String json){
 
+		
 		try{
 			Product product = getObjectMapper().readValue(json, Product.class);
-			
+		
+			product.setCategoriaPai(product);
 			ProductService service = new ProductService(); 
 					
 			return getResponseAdd(service.addProduct(product));

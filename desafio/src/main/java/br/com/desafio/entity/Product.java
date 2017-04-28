@@ -1,7 +1,6 @@
 package br.com.desafio.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,22 +8,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
 
 @Entity
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private String code;
-	private String description;
-	private String note;
-	private Product categoriaPai;
-	private List<Product> subcategorias;
-
 	@Id
 	@GeneratedValue
+	private Long id;
+
+	@Column(length = 80, nullable = false)
+	private String code;
+	
+	@Column(length = 80, nullable = false)
+	private String description;
+	
+	@Column(length = 80, nullable = true)
+	private String note;
+	
+	@ManyToOne
+	@JoinColumn(name = "categoria_pai")
+	private Product categoriaPai;
+
 	public Long getId() {
 		return id;
 	}
@@ -33,17 +40,30 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
-	@Column(length = 80, nullable = false)
-	public String getDescricao() {
-		return descricao;
+	public String getCode() {
+		return code;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "categoria_pai")
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
 	public Product getCategoriaPai() {
 		return categoriaPai;
 	}
@@ -51,14 +71,5 @@ public class Product implements Serializable {
 	public void setCategoriaPai(Product categoriaPai) {
 		this.categoriaPai = categoriaPai;
 	}
-
-	@OneToMany(mappedBy = "categoriaPai")
-	public List<Product> getSubcategorias() {
-		return subcategorias;
+	
 	}
-
-	public void setSubcategorias(List<Product> subcategorias) {
-		this.subcategorias = subcategorias;
-	}
-
-}
