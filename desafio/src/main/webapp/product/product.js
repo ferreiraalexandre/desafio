@@ -14,12 +14,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	
 	//Função de adicionar novos usuario
 	$scope.addProduct = function (data) {
-		var teste = {
-				data: data,
-				id: data.categoriaPai
-			};
-
-		ProductService.postProduct(teste, function (response) {
+		ProductService.postProduct(data, function (response) {
 			//ToastService.alert('Usuario adicionada com sucesso!', undefined, 'bottom left', 3000);
 			
 		}),
@@ -28,5 +23,15 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 			};
 	};
 
+	//Busca produtos do banco
+	$scope.getProduct = function () {
+		ProductService.getProduct(function (response) {
+			$scope.listProducts = response.data;
+		});
+
+	};
+	
+	//Chama função para buscar produtos
+	$scope.getProduct();
 
 }]);

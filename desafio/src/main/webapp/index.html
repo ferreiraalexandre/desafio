@@ -38,10 +38,10 @@
 		       <div  ui-tree-handle >
 		         {{product.description}}
 		       </div >
-		       <ol  ui-tree-nodes = " "  ng-model = "item" >
-		         <li  ng-repeat = "item in subList"  ui-tree-node >
+		       <ol  ui-tree-nodes = " "  ng-model = "product" >
+		         <li  ng-repeat = "sub in product.subcategorias"  ui-tree-node >
 		           <div  ui-tree-handle >
-		             {{item.description}}
+		             {{sub.description}}
 		           </div >
 		         </li >
 		       </ol >

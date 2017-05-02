@@ -1,4 +1,6 @@
 package br.com.desafio.service;
+import java.util.List;
+
 import br.com.desafio.entity.Product;
 import br.com.desafio.jpa.ProductJPA;
 
@@ -10,10 +12,16 @@ public class ProductService {
 		return product;
 	}
 
-//	public List<Usuario> listUsuario() throws Exception {
-//		UsuarioJPA listUsuario = new UsuarioJPA();
-//		return listUsuario.list();
-//	}
-
+	public List<Product> findAll() throws Exception {
+		ProductJPA listProduct = new ProductJPA();
 	
+		return listProduct.findAll();
+	}
+
+	public Product findId(Long id) throws Exception {
+		ProductJPA listProduct = new ProductJPA();
+	
+		return listProduct.findId(id);
+	}
+
 }
