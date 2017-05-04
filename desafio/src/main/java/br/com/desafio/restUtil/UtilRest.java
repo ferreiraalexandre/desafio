@@ -23,8 +23,7 @@ public class UtilRest {
 		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 		return new ObjectMapper()
 				.setDateFormat(dateFormat)
-				.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,
-						false)
+				.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false)
 				.configure(SerializationFeature.INDENT_OUTPUT, true)
 				.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 	}
