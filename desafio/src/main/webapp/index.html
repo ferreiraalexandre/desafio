@@ -35,14 +35,18 @@
 		<div  ui-tree >
 		   <ol  ui-tree-nodes = " "  ng-model = "product" >
 		     <li  ng-repeat = "product in listProducts"  ui-tree-node >
-		       <div  ui-tree-handle >
-		         {{product.description}}
-		       </div >
+		           <span class="node-header">
+      				  <input type="checkbox" ng-checked="product.isSelected" indeterminate-checkbox node="product" />
+		         	  {{product.description}}
+    				</span>
+		       
+		   
 		       <ol  ui-tree-nodes = " "  ng-model = "product" >
-		         <li  ng-repeat = "sub in product.subcategorias"  ui-tree-node >
-		           <div  ui-tree-handle >
-		             {{sub.description}}
-		           </div >
+		         <li  ng-repeat = "sub in product.children"  ui-tree-node >
+		           <span class="node-header">
+      				  <input type="checkbox" ng-checked="product.isSelected" indeterminate-checkbox node="product" />
+		         	  {{sub.description}}
+    				</span>
 		         </li >
 		       </ol >
 		     </li >

@@ -1,27 +1,20 @@
-
+///  Documentação http://embed.plnkr.co/bKJNoG/
 app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$timeout', function($scope, ProductService, $mdDialog, $timeout) {
+
+$scope.isSelected = [];
 	
+//Abrir Modal
 	$scope.openModal = function (event) {
 	    $mdDialog.show({
-	      clickOutsideToClose: true,
-	      controllerAs: 'product',
-	      focusOnOpen: false,
-	      targetEvent: event,
-	      templateUrl: 'product/modalProduct.html',
+		  controller: ModalController,
+		  templateUrl: 'product/modalProduct.html',
+		  targetEvent: event,
+		  clickOutsideToClose:true,
+	      locals : {
+              resultModal : $scope
+          }
 	    }).then($scope.getDesserts);
 	  };
-
-	
-	//Função de adicionar novos usuario
-	$scope.addProduct = function (data) {
-		ProductService.postProduct(data, function (response) {
-			//ToastService.alert('Usuario adicionada com sucesso!', undefined, 'bottom left', 3000);
-			
-		}),
-			function (error) {
-	
-			};
-	};
 
 	//Busca produtos do banco
 	$scope.getProduct = function () {
@@ -33,5 +26,32 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	
 	//Chama função para buscar produtos
 	$scope.getProduct();
+	
+	//Controller da modal
+	function ModalController($scope, $mdDialog, resultModal) {
+
+		$scope.hide = function() {
+	      $mdDialog.hide();
+	    };
+
+	    $scope.cancel = function() {
+	      $mdDialog.cancel();
+	    };
+		    
+		//Função de adicionar novos usuario
+		$scope.addProduct = function (data) {
+			ProductService.postProduct(data, function (response) {
+				$mdDialog.hide(data);
+				toastr.success(response.message);
+				resultModal.listProducts = response.data;
+
+			}),
+				function (error) {
+		
+				};
+		};
+
+
+	  }
 
 }]);
