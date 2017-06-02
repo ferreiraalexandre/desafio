@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Product implements Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,20 +30,19 @@ public class Product implements Serializable {
 	private String description;
 	
 	@Column(length = 80, nullable = true)
-	private String note;
+	private String detail;
 	
 	@ManyToOne
-	@JoinColumn(name = "categoria_pai")
-	private Product categoriaPai;
+	@JoinColumn(name = "parentId")
+	private Product parentId;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "categoriaPai")
-	@JsonIgnoreProperties(value = "categoriaPai")
-	private List<Product> subcategorias;
-	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parentId")
+	@JsonIgnoreProperties(value = "parentId")
+	private List<Product> children;
+
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
@@ -65,53 +64,28 @@ public class Product implements Serializable {
 		this.description = description;
 	}
 
-	public String getNote() {
-		return note;
+	public String getDetail() {
+		return detail;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 
-	public Product getCategoriaPai() {
-		return categoriaPai;
+	public Product getParentId() {
+		return parentId;
 	}
 
-	public void setCategoriaPai(Product categoriaPai) {
-		this.categoriaPai = categoriaPai;
+	public void setParentId(Product parentId) {
+		this.parentId = parentId;
+	}
+
+	public List<Product> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Product> children) {
+		this.children = children;
 	}
 	
-	public List<Product> getSubcategorias() {
-		return subcategorias;
-	}
-	
-	public void setSubcategorias(List<Product> subcategorias) {
-		this.subcategorias = subcategorias;
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Product other = (Product) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
 }
