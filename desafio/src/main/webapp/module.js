@@ -1,4 +1,4 @@
-var app = angular.module("Desafio", ['ngMaterial', 'ngMdIcons', 'ngRoute', 'ui.mask', 'ngResource']);
+var app = angular.module("Desafio", ['ngMaterial', 'ngMdIcons', 'ngRoute', 'ui.mask', 'ngResource', 'toastr']);
 
 app.pathRest = 'rest';
 

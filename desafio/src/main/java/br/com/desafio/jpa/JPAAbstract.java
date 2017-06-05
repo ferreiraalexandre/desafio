@@ -10,7 +10,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.Query;
 
 import br.com.desafio.bd.connection.JPAConnection;
-import br.com.desafio.bd.interfaces.CrudDAO;
 
 /**
  * 
@@ -25,7 +24,7 @@ import br.com.desafio.bd.interfaces.CrudDAO;
  * @param <ID>
  *            Tipo da chave primaria
  */
-public class JPAAbstract<E, ID> extends JPAConnection implements CrudDAO<E, ID> {
+public class JPAAbstract<E, ID> extends JPAConnection {
 
 	/**
 	 * Atributo que armazena o .class da entity.
@@ -263,13 +262,7 @@ public class JPAAbstract<E, ID> extends JPAConnection implements CrudDAO<E, ID> 
 		EntityManager em = getEntityManager();
 
 		TypedQuery<E> sql = em.createQuery(jpql, this.entity);
-//---
-		/*String sql = "select tab1.titulo, tab1.autor, tab1.ano, tab2.desc_categoria, tab3.qtde_estoque from tab1, tab2, tab3" + 
-		             " where tab1.id_cat = tab2.id and tab1.id = tab3.id_livro";
-		Query qu = em.createNativeQuery(sql, ClasseVO);
-		List<ClasseVO> lst = new ArrayLsit<ClasseVO>();
-		lst = qu.getResultList();*/
-//----
+
 		List<E> listentity = sql.getResultList();
 
 		this.closeConection();

@@ -10,70 +10,71 @@
 	<link rel="stylesheet" href="resources/css/bootstrap.css">
 	<link rel="stylesheet" href="resources/css/angular-ui-tree.min.css">
 
-
 </head>
 
 <body>
 
-<div class="container-fluid" id="home" ng-controller="DesafioController">
-	<div class="row col-sm-5 centralizando">
-		<h1>Produtos</h1>
-		<div class="col-sm-12 centralizando">
-			<a href="">
-				<i class="material-icons" title="Adicionar" ng-click="openModal($event)">add</i>
-			</a>
-			<a href="">
-				<i class="material-icons" title="Editar"  ng-click="editEntry()">mode_edit</i>
-			</a>
-			<a href="">
-				<i class="material-icons" title="Remover" ng-click="removeEntry()">delete</i>
-			</a>
-		</div>
-		
-		<label><input type="text" class="form-control" ng-model="criteria" placeholder="Digite para filtrar"></label>
+	<div class="container-fluid" id="home" ng-controller="DesafioController">
+		<div class="row col-sm-12 centralizando">
+			<h1>Produtos</h1>
+			<div class="col-sm-12 centralizando">
+				<a href="">
+					<i class="material-icons" title="Adicionar" ng-click="openModal($event)">add</i>
+				</a>
+				<a href="">
+					<i class="material-icons" title="Editar"  ng-click="editEntry()">mode_edit</i>
+				</a>
+				<a href="">
+					<i class="material-icons" title="Remover" ng-click="showConfirm($event)">delete</i>
+				</a>
+			</div>
+			
+			<label><input type="text" class="form-control" ng-model="criteria" placeholder="Digite para filtrar"></label>
+		    <div layout="row" layout-sm="column" layout-align="space-around">
+		      	<md-progress-circular md-mode="indeterminate"  ng-show="isLoading"></md-progress-circular>
+		    </div>
 
-		<div  ui-tree >
-		   <ol  ui-tree-nodes = " "  ng-model = "product" >
-		     <li  ng-repeat = "product in listProducts"  ui-tree-node >
-		           <span class="node-header">
-      				  <input type="checkbox" ng-checked="product.isSelected" indeterminate-checkbox node="product" />
-		         	  {{product.description}}
-    				</span>
-		       
-		   
-		       <ol  ui-tree-nodes = " "  ng-model = "product" >
-		         <li  ng-repeat = "sub in product.children"  ui-tree-node >
-		           <span class="node-header">
-      				  <input type="checkbox" ng-checked="product.isSelected" indeterminate-checkbox node="product" />
-		         	  {{sub.description}}
-    				</span>
-		         </li >
-		       </ol >
-		     </li >
-		   </ol >
-		</div >
+			<div  ui-tree >
+				<ol  ui-tree-nodes = " "  ng-model = "product" >
+					<li  ng-repeat = "product in listProducts"  ui-tree-node >
+						<span class="node-header">
+							<input type="checkbox" ng-click="takeProduct(product)" ng-checked="selected.indexOf(product) > -1">      				  
+							{{product.description}}
+						</span>
+				   
+						<ol  ui-tree-nodes = " "  ng-model = "product" >
+							<li  ng-repeat = "sub in product.children"  ui-tree-node >
+								<span class="node-header">
+									<input type="checkbox" ng-click="takeProduct(sub)" ng-checked="selected.indexOf(sub) > -1">      				  
+									{{sub.description}}
+								</span>
+							</li >
+						</ol >
+					</li >
+				</ol >
+			</div >
+			
+		</div>	
 	</div>
-		
-</div>
 
-<!-- ImportaÃ§Ã£o arquivos javascript que sÃ£o genericos -->
+	<!-- ImportaÃ§Ã£o arquivos javascript que sÃ£o genericos -->
 
-		<script src="resources/js/angular.min.js"></script>
-		<script src="resources/js/angular-route.min.js"></script>
-		<script src="resources/js/angular-resource.min.js"></script>
-		<script src="resources/js/angular-animate.min.js"></script>
-		<script src="resources/js/angular-aria.min.js"></script>
-		<script src="resources/js/angular-messages.min.js"></script>
-		<script src="resources/js/angular-material.min.js"></script>
-		<script src="resources/js/angular-material-icons.min.js"></script>
-		<script src="resources/js/angular-ui-tree.js"></script >
-		<script src="resources/js/ui-bootstrap-tpls.min.js"></script>
-		<script src="resources/js/angular-mask.min.js"></script>
-		<script src="resources/js/jquery.js"></script>
-		<script src="resources/js/bootstrap.js"></script>
-		<script src="module.js"></script>
-		<script src="product/services.js"></script>
-		<script src="product/product.js"></script>
-
+	<script src="resources/js/angular.min.js"></script>
+	<script src="resources/js/angular-route.min.js"></script>
+	<script src="resources/js/angular-resource.min.js"></script>
+	<script src="resources/js/angular-animate.min.js"></script>
+	<script src="resources/js/angular-aria.min.js"></script>
+	<script src="resources/js/angular-messages.min.js"></script>
+	<script src="resources/js/angular-material.min.js"></script>
+	<script src="resources/js/angular-material-icons.min.js"></script>
+	<script src="resources/js/angular-toastr.js"></script>
+	<script src="resources/js/angular-ui-tree.js"></script >
+	<script src="resources/js/ui-bootstrap-tpls.min.js"></script>
+	<script src="resources/js/angular-mask.min.js"></script>
+	<script src="resources/js/jquery.js"></script>
+	<script src="resources/js/bootstrap.js"></script>
+	<script src="module.js"></script>
+	<script src="product/services.js"></script>
+	<script src="product/product.js"></script>
 </body>
 </html>

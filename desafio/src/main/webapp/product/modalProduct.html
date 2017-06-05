@@ -25,10 +25,15 @@
           <input name="detail" ng-model="product.detail" id="detail" aria-required="true" aria-invalid="true" ng-trim="false">
         </md-input-container>        
      
+     
         <md-input-container class="flex">
           <label>Categoria Pai</label>
-          <input name="parentId" ng-model="product.product.id" id="parentId" aria-required="true" aria-invalid="true" ng-trim="false">
-        </md-input-container>        
+          <md-select ng-model="product.parentId" ng-required="selectRequired">
+            <md-option ng-repeat="item in listParent" ng-selected="item.description" ng-value="item" >
+              {{item.description}}
+            </md-option>
+          </md-select>
+        </md-input-container>     
       </div>   
 
     </form>

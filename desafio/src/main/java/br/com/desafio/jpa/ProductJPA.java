@@ -17,9 +17,11 @@ public class ProductJPA  extends JPAAbstract<Product, Long> implements ProductIn
 
 	}
 	
+	public void removeUsuario(long id){
+		this.remove(id);
+	}
+	
 	public Product findId(Long id) {
 		return  this.getObject("SELECT P FROM "+ this.getEntityName() +" P WHERE P.id = '"+ id +"'" );
 	}
-
-
 }
