@@ -3,6 +3,7 @@ package br.com.desafio.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,11 +33,11 @@ public class Product implements Serializable {
 	@Column(length = 80, nullable = true)
 	private String detail;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "parentId")
 	private Product parentId;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parentId")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parentId", orphanRemoval = true)
 	@JsonIgnoreProperties(value = "parentId")
 	private List<Product> children;
 

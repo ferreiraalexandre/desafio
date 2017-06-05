@@ -1,28 +1,26 @@
 <meta charset="utf-8">
 
-<md-dialog ng-controller="DesafioController" role="dialog" tabindex="-1" aria-describedby="dialog_63" class="md-transition-in" aria-label="Add Dessert ..." style="">
+<md-dialog  role="dialog" tabindex="-1" aria-describedby="dialog_63" class="md-transition-in" aria-label="Add Dessert ..." style="">
   <md-dialog-content class="md-dialog-content" id="dialog_63">
     
-    <h2 class="md-title">Cadastrar Produto</h2>
-    
-    <!-- ngIf: item.form.$submitted && item.form.$invalid -->
-    
-    <form name="item.form" ng-submit="usuario.addItem()">
+     <h2 class="md-title">{{title}}</h2>
+        
+    <form name="productForm">
       <div layout="row" class="input-row layout-row">
         <md-input-container class="flex">
           <label>Código</label>
-          <input name="code" ng-model="product.code" id="code" aria-required="true" aria-invalid="true" ng-trim="false">
+          <input name="code" ng-model="product.code" id="code" ng-required="true" ng-trim="false">
         </md-input-container>
         <md-input-container class="flex">
           <label>Descrição</label>
-          <input name="description" ng-model="product.description" id="description" aria-required="true" aria-invalid="true" ng-trim="false">
+          <input name="description" ng-model="product.description" id="description" ng-required="true" ng-trim="false">
         </md-input-container>        
       </div>
      
       <div>
         <md-input-container class="flex">
           <label>Observação</label>
-          <input name="detail" ng-model="product.detail" id="detail" aria-required="true" aria-invalid="true" ng-trim="false">
+          <input name="detail" ng-model="product.detail" id="detail" ng-required="true" ng-trim="false">
         </md-input-container>        
      
      
@@ -42,7 +40,8 @@
   
   <div class="md-actions">
         
-    <button class="md-primary md-button md-ink-ripple" type="button" ng-click="addProduct(product)"><span>Adicionar</span></button>
+    
+   	<button class="md-primary md-button md-ink-ripple" type="button" ng-click="addProduct(product)" ng-disabled="productForm.$invalid"><span>Salvar</span></button>    
     <button class="md-primary md-button md-ink-ripple" type="button" ng-click="cancel()" aria-label="Cancel"><span>Cancelar</span></button>
   </div>
   

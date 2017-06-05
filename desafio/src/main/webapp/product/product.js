@@ -14,6 +14,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	    // se selecionou um novo contrato, adiciona ao array
 	    else
 	      $scope.selected.push(product);
+	      console.log($scope.selected);
 	}
 	
 //Abrir Modal
@@ -26,7 +27,10 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	      locals : {
               resultModal : $scope
           }
-	    }).then($scope.getDesserts);
+	    })
+	    .then(function() {
+	    	$scope.selected = [];
+		});
 	  };
 
 	//Busca produtos do banco
@@ -74,7 +78,15 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	
 	//Controller da modal
 	function ModalController($scope, $mdDialog, resultModal) {
-		$scope.listParent = resultModal.selected;
+		if(resultModal.selected.length==1){
+			$scope.title = "Editar Produto";
+			$scope.product = resultModal.selected[0];	
+		}else{
+			$scope.title = "Adicionar Produto";
+			$scope.product = resultModal.selected[0];
+			$scope.listParent = resultModal.listProducts;
+
+		}
 
 		$scope.hide = function() {
 	      $mdDialog.hide();

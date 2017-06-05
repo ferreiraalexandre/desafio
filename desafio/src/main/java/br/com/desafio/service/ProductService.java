@@ -25,14 +25,15 @@ public class ProductService {
 			
 		if(listId != null && listId.length() > 0){
 			for (int i = 0; i < listId.length(); i++) {
-				Product product = prodJPA.findId(listId.getLong(i));
-				if(product.getChildren() != null){
-					for (Product children : product.getChildren()) {
-						prodJPA.removeUsuario(children.getId());
-					}
-				}else{
-					prodJPA.removeUsuario(listId.getLong(i));					
-				}
+//				Product product = prodJPA.findId(listId.getLong(i));
+				prodJPA.removeUsuario(listId.getLong(i));
+//				if(product.getChildren() != null){
+//					for (Product children : product.getChildren()) {
+//						prodJPA.removeUsuario(children.getId());
+//					}
+//				}else{
+//					prodJPA.removeUsuario(listId.getLong(i));					
+//				}
 			}
 		}
 		return prodJPA.findAll();

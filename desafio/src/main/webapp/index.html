@@ -6,7 +6,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Desafio</title>
 	<link rel="stylesheet" href="resources/css/angular-material.css">
-    <link rel="stylesheet" href="resources/css/material-icons.css"> 
+    <link rel="stylesheet" href="resources/css/material-icons.css">
+    <link rel="stylesheet" href="resources/css/angular-toastr.css" /> 
 	<link rel="stylesheet" href="resources/css/bootstrap.css">
 	<link rel="stylesheet" href="resources/css/angular-ui-tree.min.css">
 
@@ -22,7 +23,7 @@
 					<i class="material-icons" title="Adicionar" ng-click="openModal($event)">add</i>
 				</a>
 				<a href="">
-					<i class="material-icons" title="Editar"  ng-click="editEntry()">mode_edit</i>
+					<i class="material-icons" title="Editar"   ng-click="openModal($event)">mode_edit</i>
 				</a>
 				<a href="">
 					<i class="material-icons" title="Remover" ng-click="showConfirm($event)">delete</i>
