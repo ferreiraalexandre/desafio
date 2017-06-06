@@ -3,9 +3,6 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
                              function($scope,  ProductService,   $mdDialog,  $timeout,   toastr) {
 	$scope.selected = [];
 	$scope.isLoading = true;
-	$scope.listParent = {"description": "Nova Categoria"};
-
-	
 	
 	$scope.takeProduct = function (product) {
 	    //console.log(numero_contrato);
@@ -38,11 +35,8 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	  
 //////Busca produtos de id
 	$scope.getProductId = function (data) {
-		var listId ={
-				data: JSON.stringify(data),
-		};
-		
-		ProductService.getProductId(listId, function (response) {
+		var id = 1;
+		ProductService.getProductId({id : id}, function (response) {
 			$scope.listProducts = response.data;
 			$scope.isLoading = false;
 		});
@@ -94,14 +88,22 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	
 	//Controller da modal
 	function ModalController($scope, $mdDialog, resultModal) {
+		listParent = [];
+		
 		if(resultModal.selected.length==1){
 			$scope.title = "Editar Produto";
 			$scope.product = resultModal.selected[0];	
 		}else{
 			$scope.title = "Adicionar Produto";
 			$scope.product = resultModal.selected[0];
-			$scope.listParent = resultModal.listProducts;
-			$scope.listParent.push(resultModal.listParent);
+		
+			if(resultModal.listProducts != undefined){
+				resultModal.listProducts.push({"description": "Nova Categoria"});				
+				$scope.listParent = resultModal.listProducts
+			}else{
+				listParent.push({"description": "Nova Categoria"});
+				$scope.listParent = listParent;
+			}
 		}
 
 		$scope.hide = function() {
@@ -114,7 +116,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 		    
 		//Função de adicionar novos usuario
 		$scope.addProduct = function (data) {
-			if(data.parentId.description == resultModal.listParent.description){
+			if(data.parentId.description == "Nova Categoria"){
 				data.parentId = null;
 			}
 			ProductService.postProduct(data, function (response) {
