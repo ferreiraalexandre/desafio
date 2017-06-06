@@ -40,7 +40,7 @@ public class Product implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parentId", orphanRemoval = true)
 	@JsonIgnoreProperties(value = "parentId")
 	private List<Product> children;
-
+	
 	public Long getId() {
 		return id;
 	}

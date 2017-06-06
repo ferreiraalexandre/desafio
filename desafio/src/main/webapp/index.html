@@ -28,9 +28,12 @@
 				<a href="">
 					<i class="material-icons" title="Remover" ng-click="showConfirm($event)">delete</i>
 				</a>
+				<a href="">
+					<i class="material-icons" title="Pesquisar" ng-click="getProductId(search)">search</i>
+				</a>
 			</div>
 			
-			<label><input type="text" class="form-control" ng-model="criteria" placeholder="Digite para filtrar"></label>
+			<label><input type="text" class="form-control" ng-model="search" placeholder="Digite para filtrar"></label>
 		    <div layout="row" layout-sm="column" layout-align="space-around">
 		      	<md-progress-circular md-mode="indeterminate"  ng-show="isLoading"></md-progress-circular>
 		    </div>

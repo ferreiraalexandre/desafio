@@ -21,7 +21,7 @@ public class ProductJPA  extends JPAAbstract<Product, Long> implements ProductIn
 		this.remove(id);
 	}
 	
-	public Product findId(Long id) {
-		return  this.getObject("SELECT P FROM "+ this.getEntityName() +" P WHERE P.id = '"+ id +"'" );
+	public List<Product>  findId(Long parentId) {
+		return  this.list("SELECT P FROM "+ this.getEntityName() +" P WHERE P.parentId = '"+ parentId +"'" );
 	}
 }

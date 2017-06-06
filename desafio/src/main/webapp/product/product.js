@@ -3,6 +3,9 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
                              function($scope,  ProductService,   $mdDialog,  $timeout,   toastr) {
 	$scope.selected = [];
 	$scope.isLoading = true;
+	$scope.listParent = {"description": "Nova Categoria"};
+
+	
 	
 	$scope.takeProduct = function (product) {
 	    //console.log(numero_contrato);
@@ -32,8 +35,21 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	    	$scope.selected = [];
 		});
 	  };
+	  
+//////Busca produtos de id
+	$scope.getProductId = function (data) {
+		var listId ={
+				data: JSON.stringify(data),
+		};
+		
+		ProductService.getProductId(listId, function (response) {
+			$scope.listProducts = response.data;
+			$scope.isLoading = false;
+		});
 
-	//Busca produtos do banco
+	};
+	  
+//////Busca todos os produtos do banco
 	$scope.getProduct = function () {
 		ProductService.getProduct(function (response) {
 			$scope.listProducts = response.data;
@@ -85,7 +101,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 			$scope.title = "Adicionar Produto";
 			$scope.product = resultModal.selected[0];
 			$scope.listParent = resultModal.listProducts;
-
+			$scope.listParent.push(resultModal.listParent);
 		}
 
 		$scope.hide = function() {
@@ -98,6 +114,9 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 		    
 		//Função de adicionar novos usuario
 		$scope.addProduct = function (data) {
+			if(data.parentId.description == resultModal.listParent.description){
+				data.parentId = null;
+			}
 			ProductService.postProduct(data, function (response) {
 				$mdDialog.hide(data);
 				toastr.success(response.message);

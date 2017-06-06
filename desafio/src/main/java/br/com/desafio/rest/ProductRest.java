@@ -26,6 +26,7 @@ public class ProductRest extends UtilRest{
 	public Response save( String json){
 				
 		try{
+
 			ProductService service = new ProductService();
 			Product product = getObjectMapper().readValue(json, Product.class);
 			return getResponseAdd(service.addProduct(product));
@@ -64,5 +65,22 @@ public class ProductRest extends UtilRest{
 			return getResponseError(e);
 		}
 	}
-}
+	
+	@GET
+	@Path("/findAllById/{parentId}")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Response findAllById(@PathParam ("parentId") Long parentId) {
 
+		
+		try{
+			ProductService service = new ProductService(); 
+	
+			List<Product> e = service.findAllById(parentId);
+	
+			return getResponseList(e);
+		} catch (Exception e) {
+			return getResponseError(e);
+		}
+	}
+}
