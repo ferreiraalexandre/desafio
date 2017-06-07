@@ -15,60 +15,64 @@
 
 <body>
 
-	<div class="container-fluid" id="home" ng-controller="DesafioController">
-		<div class="row col-sm-12 centralizando">
-			<h1>Produtos</h1>
-			<div class="col-sm-12 centralizando">
-				<a href="">
-					<i class="material-icons" title="Adicionar" ng-click="openModal($event)">add</i>
-				</a>
-				<a href="">
-					<i class="material-icons" title="Editar"   ng-click="openModal($event)">mode_edit</i>
-				</a>
-				<a href="">
-					<i class="material-icons" title="Remover" ng-click="showConfirm($event)">delete</i>
-				</a>
-				<a href="">
-					<i class="material-icons" title="Pesquisar" ng-click="getProductId(search)">search</i>
-				</a>
-			</div>
+	<md-card ng-controller="DesafioController">
+		<md-grid-list md-cols="1"  md-row-height="64px">
+			<md-grid-tile id="titulo">
+				<h1>Produtos</h1>
+			</md-grid-tile>
+		</md-grid-list>
 			
-			<label><input type="text" class="form-control" ng-model="search" placeholder="Encontrar produto"></label>
-		    
-		    <div layout="row" layout-sm="column" layout-align="space-around">
-		      	<md-progress-circular md-mode="indeterminate"  ng-show="isLoading"></md-progress-circular>
-		    </div>
+		<md-grid-list md-cols="1"  md-row-height="64px">
+			<md-grid-tile id="button">
+			    <md-button ng-click="openModal($event)" ng-disabled="buttonAddDisabled">
+			      	<ng-md-icon id="adicionar" icon="playlist_add" style="fill: #abcdef" size="32"></ng-md-icon>
+			    </md-button>
+
+			    <md-button ng-click="openModal($event)" ng-disabled="buttonEditDisabled">
+			      	<ng-md-icon id="editar" icon="create" style="fill: #abcdef" size="32"></ng-md-icon>
+			    </md-button>
+
+			    <md-button ng-click="openModal($event)" ng-disabled="buttonRemoveDisabled">
+			      	<ng-md-icon id="remover" icon="delete" style="fill: #abcdef" size="32"></ng-md-icon>
+			    </md-button>
+
+			    <md-button ng-click="getProductId(search)">
+			      	<ng-md-icon id="pesquisar" icon="search" style="fill: #abcdef" size="32"></ng-md-icon>
+			    </md-button>
+			</md-grid-tile>
+		</md-grid-list>
+				
+		<md-grid-list md-cols="1"  md-row-height="64px">
+			<md-grid-tile id="button">
+				<label><input type="text" class="form-control" ng-model="search" placeholder="Encontrar produto"></label>
+			</md-grid-tile>
+		</md-grid-list>
+    
+		<div layout="row" layout-sm="column" layout-align="space-around">
+			<md-progress-circular md-mode="indeterminate"  ng-show="isLoading"></md-progress-circular>
+		</div>
 
 
-  <script type="text/ng-template" id="treeLevel.html">
-    <ul>
-      <li ng-repeat="item in items">
-        
-        <input type="checkbox"
-          name="itemSelection"
-          ng-model="item._Selected" />
-        
-        {{item.description}}
-      
-        <div ng-include=" 'treeLevel.html'"
-            onload="items = item.children">
-        </div>
-      
-      </li>
-    </ul>
-  </script>
+		<script type="text/ng-template" id="treeLevel.html">
+			<ul>
+				<li ng-repeat="item in items">
+				
+					<input type="checkbox" name="itemSelection" ng-click="takeProduct(item)" ng-checked="selected.indexOf(item) > -1" />
+					
+					{{item.description}}
+				  
+					<div ng-include=" 'treeLevel.html'"
+						onload="items = item.children">
+					</div>			  
+				</li>
+			</ul>
+		</script>
   
-  <div ng-include=" 'treeLevel.html' "
-       onload="items = sourceItems">
-  </div>
+		<div ng-include=" 'treeLevel.html' "
+			onload="items = sourceItems">
+	    </div>
   
-
-
-
-
-
-		</div>	
-	</div>
+	</md-card>
 
 	<!-- ImportaÃ§Ã£o arquivos javascript que sÃ£o genericos -->
 

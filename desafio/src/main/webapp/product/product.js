@@ -3,6 +3,10 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
                              function($scope,  ProductService,   $mdDialog,  $timeout,   toastr) {
 	$scope.selected = [];
 	$scope.isLoading = true;
+    $scope.buttonAddDisabled = false;
+	$scope.buttonEditDisabled = true;
+	$scope.buttonRemoveDisabled = true;
+
 	
 	$scope.takeProduct = function (product) {
 	    //console.log(numero_contrato);
@@ -15,6 +19,10 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	    else
 	      $scope.selected.push(product);
 	      console.log($scope.selected);
+	      $scope.buttonAddDisabled = $scope.selected.length > 0;
+	      $scope.buttonEditDisabled = !($scope.selected.length == 1);
+	      $scope.buttonRemoveDisabled = $scope.selected.length == 0;
+
 	}
 	
 //Abrir Modal
