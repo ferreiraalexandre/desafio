@@ -17,7 +17,7 @@ public class ProductJPA  extends JPAAbstract<Product, Long> implements ProductIn
 
 	}
 	
-	public void removeUsuario(long id){
+	public void removeUsuario(Long id){
 		this.remove(id);
 	}
 	

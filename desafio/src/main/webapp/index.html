@@ -33,31 +33,40 @@
 				</a>
 			</div>
 			
-			<label><input type="text" class="form-control" ng-model="search" placeholder="Digite para filtrar"></label>
+			<label><input type="text" class="form-control" ng-model="search" placeholder="Encontrar produto"></label>
+		    
 		    <div layout="row" layout-sm="column" layout-align="space-around">
 		      	<md-progress-circular md-mode="indeterminate"  ng-show="isLoading"></md-progress-circular>
 		    </div>
 
-			<div  ui-tree >
-				<ol  ui-tree-nodes = " "  ng-model = "product" >
-					<li  ng-repeat = "product in listProducts"  ui-tree-node >
-						<span class="node-header">
-							<input type="checkbox" ng-click="takeProduct(product)" ng-checked="selected.indexOf(product) > -1">      				  
-							{{product.description}}
-						</span>
-				   
-						<ol  ui-tree-nodes = " "  ng-model = "product" >
-							<li  ng-repeat = "sub in product.children"  ui-tree-node >
-								<span class="node-header">
-									<input type="checkbox" ng-click="takeProduct(sub)" ng-checked="selected.indexOf(sub) > -1">      				  
-									{{sub.description}}
-								</span>
-							</li >
-						</ol >
-					</li >
-				</ol >
-			</div >
-			
+
+  <script type="text/ng-template" id="treeLevel.html">
+    <ul>
+      <li ng-repeat="item in items">
+        
+        <input type="checkbox"
+          name="itemSelection"
+          ng-model="item._Selected" />
+        
+        {{item.description}}
+      
+        <div ng-include=" 'treeLevel.html'"
+            onload="items = item.children">
+        </div>
+      
+      </li>
+    </ul>
+  </script>
+  
+  <div ng-include=" 'treeLevel.html' "
+       onload="items = sourceItems">
+  </div>
+  
+
+
+
+
+
 		</div>	
 	</div>
 

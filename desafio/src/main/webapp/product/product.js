@@ -35,9 +35,12 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	  
 //////Busca produtos de id
 	$scope.getProductId = function (data) {
-		var id = 1;
-		ProductService.getProductId({id : id}, function (response) {
-			$scope.listProducts = response.data;
+		ProductService.getProductId({data : data}, function (response) {
+			if(response.data != undefined){
+				$scope.listProducts = response.data;
+			}else{
+				toastr.warning("Produto não encontrado!");
+			}
 			$scope.isLoading = false;
 		});
 
@@ -46,7 +49,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 //////Busca todos os produtos do banco
 	$scope.getProduct = function () {
 		ProductService.getProduct(function (response) {
-			$scope.listProducts = response.data;
+			$scope.items = response.data;
 			$scope.isLoading = false;
 		});
 

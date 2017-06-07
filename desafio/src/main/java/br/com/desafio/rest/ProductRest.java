@@ -69,13 +69,13 @@ public class ProductRest extends UtilRest{
 	@GET
 	@Path("/findAllById/{id}")
 	@Produces("application/json")
-	public Response findAllById(@PathParam ("id") int parentId) {
+	public Response findAllById(@PathParam ("id") Long id) {
 
 		try{
 			ProductService service = new ProductService(); 
 	
-			List<Product> e = service.findAllById(1L);
-	
+			List<Product> e = service.findAllById(id);
+			
 			return getResponseList(e);
 		} catch (Exception e) {
 			return getResponseError(e);

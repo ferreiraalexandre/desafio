@@ -8,7 +8,7 @@ public interface ProductInterface{
 	
 	public Product addUsuario(Product usu);
 	public List<Product> findAll();
-	public void removeUsuario(long id);
+	public void removeUsuario(Long id);
 	public List<Product> findId(Long id);
 	
 }
