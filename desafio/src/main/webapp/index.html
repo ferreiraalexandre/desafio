@@ -15,16 +15,11 @@
 
 <body>
 
-	<md-card ng-controller="DesafioController">
-		<md-grid-list md-cols="1"  md-row-height="64px">
-			<md-grid-tile id="titulo">
-				<h1>Produtos</h1>
-			</md-grid-tile>
-		</md-grid-list>
-			
-		<md-grid-list md-cols="1"  md-row-height="64px">
-			<md-grid-tile id="button">
-			    <md-button ng-click="openModal($event)" ng-disabled="buttonAddDisabled">
+	<div class="container-fluid" id="home" ng-controller="DesafioController">
+		<div class="row col-sm-12 centralizando">
+			<h1>Produtos</h1>
+			<div class="col-sm-12 centralizando">
+				<md-button ng-click="openModal($event)" ng-disabled="buttonAddDisabled">
 			      	<ng-md-icon id="adicionar" icon="playlist_add" style="fill: #abcdef" size="32"></ng-md-icon>
 			    </md-button>
 
@@ -39,40 +34,35 @@
 			    <md-button ng-click="getProductId(search)">
 			      	<ng-md-icon id="pesquisar" icon="search" style="fill: #abcdef" size="32"></ng-md-icon>
 			    </md-button>
-			</md-grid-tile>
-		</md-grid-list>
-				
-		<md-grid-list md-cols="1"  md-row-height="64px">
-			<md-grid-tile id="button">
-				<label><input type="text" class="form-control" ng-model="search" placeholder="Encontrar produto"></label>
-			</md-grid-tile>
-		</md-grid-list>
-    
-		<div layout="row" layout-sm="column" layout-align="space-around">
-			<md-progress-circular md-mode="indeterminate"  ng-show="isLoading"></md-progress-circular>
-		</div>
+			</div>
+			
+			<label><input type="text" class="form-control" ng-model="search" placeholder="Encontrar produto"></label>
+		    
+		    <div layout="row" layout-sm="column" layout-align="space-around">
+		      	<md-progress-circular md-mode="indeterminate"  ng-show="isLoading"></md-progress-circular>
+		    </div>
 
-
-		<script type="text/ng-template" id="treeLevel.html">
-			<ul>
-				<li ng-repeat="item in items">
-				
-					<input type="checkbox" name="itemSelection" ng-click="takeProduct(item)" ng-checked="selected.indexOf(item) > -1" />
+			<script type="text/ng-template" id="treeLevel.html">
+				<ul>
+					<li ng-repeat="item in items">
 					
-					{{item.description}}
-				  
-					<div ng-include=" 'treeLevel.html'"
-						onload="items = item.children">
-					</div>			  
-				</li>
-			</ul>
-		</script>
-  
-		<div ng-include=" 'treeLevel.html' "
-			onload="items = sourceItems">
-	    </div>
-  
-	</md-card>
+						<input type="checkbox" name="itemSelection" ng-click="takeProduct(item)" ng-checked="selected.indexOf(item) > -1" />
+						
+						{{item.description}}
+					  
+						<div ng-include=" 'treeLevel.html'"
+							onload="items = item.children">
+						</div>			  
+					</li>
+				</ul>
+			</script>
+	  
+			<div ng-include=" 'treeLevel.html' "
+				onload="items = sourceItems">
+			</div>
+				
+			</div>	
+	</div>
 
 	<!-- ImportaÃ§Ã£o arquivos javascript que sÃ£o genericos -->
 

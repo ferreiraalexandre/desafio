@@ -6,8 +6,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
     $scope.buttonAddDisabled = false;
 	$scope.buttonEditDisabled = true;
 	$scope.buttonRemoveDisabled = true;
-
-	
+		
 	$scope.takeProduct = function (product) {
 	    //console.log(numero_contrato);
 	    var index = $scope.selected.indexOf(product);
@@ -100,21 +99,26 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	//Controller da modal
 	function ModalController($scope, $mdDialog, resultModal) {
 		listParent = [];
+		$scope.selectedSub = true;
+		$scope.selectedCat = true;
 		
 		if(resultModal.selected.length==1){
 			$scope.title = "Editar Produto";
-			$scope.product = resultModal.selected[0];	
-		}else{
-			$scope.title = "Adicionar Produto";
-			$scope.product = resultModal.selected[0];
-		
-			if(resultModal.listProducts != undefined){
-				resultModal.listProducts.push({"description": "Nova Categoria"});				
-				$scope.listParent = resultModal.listProducts
+			$scope.product = angular.copy(resultModal.selected[0]);
+			
+			if(resultModal.items != undefined){
+				resultModal.items.push({"description": "Nova Categoria"});				
+				$scope.listParent = resultModal.items;
 			}else{
 				listParent.push({"description": "Nova Categoria"});
 				$scope.listParent = listParent;
 			}
+		}else{
+			$scope.title = "Adicionar Produto";
+			//resultModal.items.push({"description": "Nova Categoria"});				
+			$scope.listParent = resultModal.items;
+
+		
 		}
 
 		$scope.hide = function() {
@@ -141,6 +145,15 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 				};
 		};
 
+		$scope.selectParent = function (product) {
+			$scope.listChildren = product.children;
+		}
+
+		$scope.selectChildren = function (product) {
+			$scope.listParent = product.children;
+		}
+
+		
 
 	  }
 
