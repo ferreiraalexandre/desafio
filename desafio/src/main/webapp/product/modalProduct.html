@@ -18,35 +18,22 @@
       </div>
      
       <div>   
-        <md-input-container class="flex">
-          <label>Categoria</label>
-          <md-select ng-model="product.parent" ng-change="selectParent(product.parent)" ng-required="selectRequired">
-            <md-option ng-repeat="item in listParent"  ng-value="item.description" >
-              {{item.description}}
-            </md-option>
-            <md-option ng-selected="selectedCat" value="item" >Nova Categoria </md-option>
-          </md-select>
-        </md-input-container> 
-      
-        
-        <md-input-container class="flex">
-          <label>Subcategoria</label>
-          <md-select ng-model="product.children" ng-change="selectChildren(product.children)" ng-required="selectRequired">
-            <md-option ng-repeat="sub in listChildren"  ng-value="sub.description" >
-              {{sub.description}}
-            </md-option>
-			<md-option ng-selected="selectedSub" value="items" >Nova Subcategoria </md-option>
-
-          </md-select>
-        </md-input-container>     
-            
-      </div>  
-      <div>
       	<md-input-container class="flex">
           <label>Observação</label>
           <input name="detail" ng-model="product.detail" id="detail">
-        </md-input-container>        
-      	
+        </md-input-container>                          
+      </div>  
+      
+      <div>
+        <md-input-container class="flex">
+          <label>Categoria</label>
+          <md-select ng-model="product.parent" ng-show="showNewCategory" ng-required="selectRequired">
+            <md-option ng-repeat="item in listParent" ng-selected="selectedProduct" ng-value="item.description" >
+              {{item.description}}
+            </md-option>
+            <md-option ng-selected="selectedNewCategory" value="item" >Nova Categoria </md-option>
+          </md-select>
+        </md-input-container> 	
       </div> 
 
     </form>

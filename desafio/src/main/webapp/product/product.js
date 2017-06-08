@@ -18,21 +18,22 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	    else
 	      $scope.selected.push(product);
 	      console.log($scope.selected);
-	      $scope.buttonAddDisabled = $scope.selected.length > 0;
+	      $scope.buttonAddDisabled = $scope.selected.length > 1;
 	      $scope.buttonEditDisabled = !($scope.selected.length == 1);
 	      $scope.buttonRemoveDisabled = $scope.selected.length == 0;
 
 	}
 	
 //Abrir Modal
-	$scope.openModal = function (event) {
+	$scope.openModal = function (event, type) {
 	    $mdDialog.show({
 		  controller: ModalController,
 		  templateUrl: 'product/modalProduct.html',
 		  targetEvent: event,
 		  clickOutsideToClose:true,
 	      locals : {
-              resultModal : $scope
+              resultModal : $scope,
+              type : type
           }
 	    })
 	    .then(function() {
@@ -97,28 +98,26 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	$scope.getProduct();
 	
 	//Controller da modal
-	function ModalController($scope, $mdDialog, resultModal) {
+	function ModalController($scope, $mdDialog, resultModal, type) {
 		listParent = [];
-		$scope.selectedSub = true;
-		$scope.selectedCat = true;
 		
-		if(resultModal.selected.length==1){
+		if(type === "edit"){
 			$scope.title = "Editar Produto";
 			$scope.product = angular.copy(resultModal.selected[0]);
-			
-			if(resultModal.items != undefined){
-				resultModal.items.push({"description": "Nova Categoria"});				
-				$scope.listParent = resultModal.items;
-			}else{
-				listParent.push({"description": "Nova Categoria"});
-				$scope.listParent = listParent;
-			}
+			$scope.showNewCategory = false;
+						
 		}else{
-			$scope.title = "Adicionar Produto";
-			//resultModal.items.push({"description": "Nova Categoria"});				
-			$scope.listParent = resultModal.items;
-
-		
+			$scope.title = "Adicionar Produto no ";
+			$scope.showNewCategory = true;			
+			
+			if(resultModal.selected.length > 0){
+				$scope.title += resultModal.selected[0].description;
+				$scope.listParent = resultModal.selected[0];
+				$scope.selectedProduct = true;
+			}else{
+				$scope.title = "Criar Nova Categoria";
+				$scope.showNewCategory = false;
+			}
 		}
 
 		$scope.hide = function() {
@@ -131,13 +130,10 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 		    
 		//Função de adicionar novos usuario
 		$scope.addProduct = function (data) {
-			if(data.parentId.description == "Nova Categoria"){
-				data.parentId = null;
-			}
 			ProductService.postProduct(data, function (response) {
 				$mdDialog.hide(data);
 				toastr.success(response.message);
-				resultModal.listProducts = response.data;
+				resultModal.items = response.data;
 
 			}),
 				function (error) {

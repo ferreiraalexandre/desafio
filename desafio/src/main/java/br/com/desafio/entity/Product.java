@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -33,6 +36,7 @@ public class Product implements Serializable {
 	@Column(length = 80, nullable = true)
 	private String detail;
 	
+//	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "parentId")
 	private Product parentId;
