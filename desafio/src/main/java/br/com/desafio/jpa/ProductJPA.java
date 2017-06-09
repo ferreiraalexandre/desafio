@@ -13,7 +13,6 @@ public class ProductJPA  extends JPAAbstract<Product, Long> implements ProductIn
 
 	public List<Product> findAll() {
 		return this.list("SELECT P FROM "+ this.getEntityName() +" P where P.parentId is null");
-
 	}
 	
 	public void removeUsuario(Long id){

@@ -24,24 +24,24 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 
 	}
 	
-//Abrir Modal
+	//Abrir Modal
 	$scope.openModal = function (event, type) {
 	    $mdDialog.show({
-		  controller: ModalController,
-		  templateUrl: 'product/modalProduct.html',
-		  targetEvent: event,
-		  clickOutsideToClose:true,
-	      locals : {
-              resultModal : $scope,
-              type : type
-          }
+			controller: ModalController,
+			templateUrl: 'product/modalProduct.html',
+			targetEvent: event,
+			clickOutsideToClose:true,
+			locals : {
+				resultModal : $scope,
+				type : type
+			}
 	    })
 	    .then(function() {
 	    	$scope.selected = [];
 		});
-	  };
+	};
 	  
-//////Busca produtos de id
+	//////Busca produtos de id
 	$scope.getProductId = function (data) {
 		ProductService.getProductId({data : data}, function (response) {
 			if(response.data != undefined){
@@ -51,46 +51,43 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 			}
 			$scope.isLoading = false;
 		});
-
 	};
 	  
-//////Busca todos os produtos do banco
+	//////Busca todos os produtos do banco
 	$scope.getProduct = function () {
 		ProductService.getProduct(function (response) {
 			$scope.items = response.data;
 			$scope.isLoading = false;
 		});
-
 	};
 
-////////////////////função de confirm pra deletar
-	  $scope.showConfirm = function(ev) {
-		  var confirm = $mdDialog.confirm()
-		  .title('EXCLUIR ')
-		  .textContent('Tem certeza que deseja excluir o(s) Produto(s)?')
-		  .targetEvent(ev)
-		  .ok('SIM')
-		  .cancel('NÃO');
-		  
-		  $mdDialog.show(confirm).then(function() {
-			  $scope.removeProduct();
-		  }, function() {
-		  });
-	  };
+	////////////////////função de confirm pra deletar
+	$scope.showConfirm = function(ev) {
+		var confirm = $mdDialog.confirm()
+		.title('EXCLUIR ')
+	    .textContent('Tem certeza que deseja excluir o(s) Produto(s)?')
+	    .targetEvent(ev)
+		.ok('SIM')
+		.cancel('NÃO');  
+		$mdDialog.show(confirm).then(function() {
+			$scope.removeProduct();
+		}, function() {
+		});
+	};
 	 
-	   //////////função de deletar
-	  $scope.removeProduct = function(){	
-			var arrayId = []; 
-			for (var i = 0; i < $scope.selected.length; i++) {
-				arrayId.push($scope.selected[i].id);
-			}
-			var listId ={
-					data: JSON.stringify(arrayId),
-			};
-			ProductService.removeProduct(listId, function(response){
-			$scope.items = response.data;
-			$scope.selecionados = []; 
-			toastr.success(response.message);
+	//////////função de deletar
+	$scope.removeProduct = function(){	
+		var arrayId = []; 
+		for (var i = 0; i < $scope.selected.length; i++) {
+			arrayId.push($scope.selected[i].id);
+		}
+		var listId ={
+			data: JSON.stringify(arrayId),
+		};
+		ProductService.removeProduct(listId, function(response){
+		$scope.items = response.data;
+		$scope.selecionados = []; 
+		toastr.success(response.message);
 		});
 	};
 	
@@ -100,6 +97,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	//Controller da modal
 	function ModalController($scope, $mdDialog, resultModal, type) {
 		listParent = [];
+		$scope.showNewCategory = false;
 		
 		if(type === "edit"){
 			$scope.showEdit = true;
@@ -109,8 +107,8 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 			$scope.selectedProduct = true;
 						
 		}else{
-			$scope.title = "Adicionar Produto no ";
-			$scope.showNewCategory = false;			
+			$scope.title = "Adicionar Produto em ";
+			$scope.showAdd = true;
 			
 			if(resultModal.selected.length > 0){
 				$scope.title += resultModal.selected[0].description;
@@ -118,7 +116,6 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 				$scope.selectedProduct = true;
 			}else{
 				$scope.title = "Criar Nova Categoria";
-				$scope.showNewCategory = false;
 			}
 		}
 
@@ -138,9 +135,9 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 				resultModal.items = response.data;
 
 			}),
-				function (error) {
-		
-				};
+			function (error) {
+	
+			};
 		};
 		
 		//Função de editar produto
@@ -148,12 +145,10 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 			ProductService.putProduct(data, function (response) {
 			$mdDialog.hide(data);
 			toastr.success(response.message);
-			retornoModal.usuarios = response.data;
-				
+			retornoModal.usuarios = response.data;		
 			}),
-				function (error) {
-		
-				};
+			function (error) {
+			};
 		};
 
 		$scope.selectParent = function (product) {
@@ -164,8 +159,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 			$scope.listParent = product.children;
 		}
 
-		
 
-	  }
+	}
 
 }]);

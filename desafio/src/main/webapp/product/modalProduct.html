@@ -1,59 +1,51 @@
 <meta charset="utf-8">
 
 <md-dialog  role="dialog" tabindex="-1" aria-describedby="dialog_63" class="md-transition-in" aria-label="Add Dessert ..." style="">
-  <md-dialog-content class="md-dialog-content" id="dialog_63">
+	<md-dialog-content class="md-dialog-content" id="dialog_63">
     
-     <h2 class="md-title">{{title}}</h2>
-        
-    <form name="productForm">
-      <div layout="row" class="input-row layout-row">
-        <md-input-container class="flex">
-          <label>Código</label>
-          <input name="code" ng-model="product.code" id="code" ng-required="true" ng-trim="false">
-        </md-input-container>
-        <md-input-container class="flex">
-          <label>Descrição</label>
-          <input name="description" ng-model="product.description" id="description" ng-required="true" ng-trim="false">
-        </md-input-container>        
-      </div>
-     
-      <div>   
-      	<md-input-container class="flex">
-          <label>Observação</label>
-          <input name="detail" ng-model="product.detail" id="detail">
-        </md-input-container>                          
-      </div>  
-        
-      <div>
-      
-                        
-        
-      
-        <md-input-container class="flex">
-          <label>Categoria</label>
-          <md-select ng-model="product.parentId" ng-show="showNewCategory" ng-required="selectRequired">
-            <md-option ng-repeat="item in listParent" ng-selected="selectedProduct" ng-value="item" >
-              {{item.description}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-       
-         	
-      </div> 
-
-    </form>
+		 <h2 class="md-title">{{title}}</h2>
+			
+		<form name="productForm">
+			<div layout="row" class="input-row layout-row">
+				<md-input-container class="flex">
+					<label>Código</label>
+					<input name="code" ng-model="product.code" id="code" ng-required="true" ng-trim="false">
+				</md-input-container>
+				<md-input-container class="flex">
+					<label>Descrição</label>
+					<input name="description" ng-model="product.description" id="description" ng-required="true" ng-trim="false">
+				</md-input-container>        
+			</div>
+		 
+			<div>   
+				<md-input-container class="flex">
+					<label>Observação</label>
+					<input name="detail" ng-model="product.detail" id="detail">
+				</md-input-container>                          
+			</div>  
+			
+			<div>
+				<md-input-container class="flex">
+					<label>Categoria</label>
+						<md-select ng-model="product.parentId" ng-show="showNewCategory" ng-required="selectRequired">
+							<md-option ng-repeat="item in listParent" ng-selected="selectedProduct" ng-value="item" >
+								{{item.description}}
+							</md-option>
+						</md-select>
+				</md-input-container> 	
+			</div> 
+		</form>
     
-  </md-dialog-content>
+	</md-dialog-content>
   
-  <div class="md-actions">
-        
-    
-   	<button class="md-primary md-button md-ink-ripple" type="button" ng-click="addProduct(product)" ng-show="showAdd" ng-disabled="productForm.$invalid"><span>Salvar</span></button>    
-   	<button class="md-primary md-button md-ink-ripple" type="button" ng-click="editProduct(product)" ng-show="showEdit" ng-disabled="productForm.$invalid"><span>Salvar</span></button>
-   
-    <button class="md-primary md-button md-ink-ripple" type="button" ng-click="cancel()" aria-label="Cancel"><span>Cancelar</span></button>
-  </div>
+	<div class="md-actions">
+				
+		<button class="md-primary md-button md-ink-ripple" type="button" ng-click="addProduct(product)" ng-show="showAdd" ng-disabled="productForm.$invalid"><span>Salvar</span></button>    
+		<button class="md-primary md-button md-ink-ripple" type="button" ng-click="editProduct(product)" ng-show="showEdit" ng-disabled="productForm.$invalid"><span>Salvar</span></button>
+		<button class="md-primary md-button md-ink-ripple" type="button" ng-click="cancel()" aria-label="Cancel"><span>Cancelar</span></button>
+	</div>
   
-<div class="md-dialog-focus-trap" tabindex="0"></div></md-dialog>
+	<div class="md-dialog-focus-trap" tabindex="0"></div>
+</md-dialog>
 
 
