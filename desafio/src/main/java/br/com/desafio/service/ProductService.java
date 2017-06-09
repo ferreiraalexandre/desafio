@@ -36,5 +36,12 @@ public class ProductService {
 	
 		return listProduct.findId(parentId);
 	}
+	
+	public Object editProduct(Product product) {
+		ProductJPA prod = new ProductJPA();
+		prod.editProduct(product);
+		return prod.list();
+	}
+
 
 }

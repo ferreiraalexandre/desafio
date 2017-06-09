@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -36,12 +37,11 @@ public class Product implements Serializable {
 	@Column(length = 80, nullable = true)
 	private String detail;
 	
-//	@OnDelete(action = OnDeleteAction.CASCADE)
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "parentId")
 	private Product parentId;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parentId", orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parentId")
 	@JsonIgnoreProperties(value = "parentId")
 	private List<Product> children;
 	

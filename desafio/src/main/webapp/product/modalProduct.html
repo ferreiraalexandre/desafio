@@ -23,17 +23,22 @@
           <input name="detail" ng-model="product.detail" id="detail">
         </md-input-container>                          
       </div>  
-      
+        
       <div>
+      
+                        
+        
+      
         <md-input-container class="flex">
           <label>Categoria</label>
-          <md-select ng-model="product.parent" ng-show="showNewCategory" ng-required="selectRequired">
-            <md-option ng-repeat="item in listParent" ng-selected="selectedProduct" ng-value="item.description" >
+          <md-select ng-model="product.parentId" ng-show="showNewCategory" ng-required="selectRequired">
+            <md-option ng-repeat="item in listParent" ng-selected="selectedProduct" ng-value="item" >
               {{item.description}}
             </md-option>
-            <md-option ng-selected="selectedNewCategory" value="item" >Nova Categoria </md-option>
           </md-select>
-        </md-input-container> 	
+        </md-input-container>
+       
+         	
       </div> 
 
     </form>
@@ -43,7 +48,9 @@
   <div class="md-actions">
         
     
-   	<button class="md-primary md-button md-ink-ripple" type="button" ng-click="addProduct(product)" ng-disabled="productForm.$invalid"><span>Salvar</span></button>    
+   	<button class="md-primary md-button md-ink-ripple" type="button" ng-click="addProduct(product)" ng-show="showAdd" ng-disabled="productForm.$invalid"><span>Salvar</span></button>    
+   	<button class="md-primary md-button md-ink-ripple" type="button" ng-click="editProduct(product)" ng-show="showEdit" ng-disabled="productForm.$invalid"><span>Salvar</span></button>
+   
     <button class="md-primary md-button md-ink-ripple" type="button" ng-click="cancel()" aria-label="Cancel"><span>Cancelar</span></button>
   </div>
   

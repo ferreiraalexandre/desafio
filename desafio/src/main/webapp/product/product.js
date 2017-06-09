@@ -45,7 +45,7 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	$scope.getProductId = function (data) {
 		ProductService.getProductId({data : data}, function (response) {
 			if(response.data != undefined){
-				$scope.listProducts = response.data;
+				$scope.items = response.data;
 			}else{
 				toastr.warning("Produto não encontrado!");
 			}
@@ -87,12 +87,12 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 			var listId ={
 					data: JSON.stringify(arrayId),
 			};
-				ProductService.removeProduct(listId, function(response){
-				$scope.listProducts = response.data;
-				$scope.selecionados = []; 
-				toastr.success(response.message);
-			});
-		};
+			ProductService.removeProduct(listId, function(response){
+			$scope.items = response.data;
+			$scope.selecionados = []; 
+			toastr.success(response.message);
+		});
+	};
 	
 	//Chama função para buscar produtos
 	$scope.getProduct();
@@ -102,17 +102,19 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 		listParent = [];
 		
 		if(type === "edit"){
+			$scope.showEdit = true;
 			$scope.title = "Editar Produto";
 			$scope.product = angular.copy(resultModal.selected[0]);
-			$scope.showNewCategory = false;
+			$scope.listParent = resultModal.selected;
+			$scope.selectedProduct = true;
 						
 		}else{
 			$scope.title = "Adicionar Produto no ";
-			$scope.showNewCategory = true;			
+			$scope.showNewCategory = false;			
 			
 			if(resultModal.selected.length > 0){
 				$scope.title += resultModal.selected[0].description;
-				$scope.listParent = resultModal.selected[0];
+				$scope.listParent = resultModal.selected;
 				$scope.selectedProduct = true;
 			}else{
 				$scope.title = "Criar Nova Categoria";
@@ -129,12 +131,25 @@ app.controller('DesafioController', ['$scope','ProductService', '$mdDialog','$ti
 	    };
 		    
 		//Função de adicionar novos usuario
-		$scope.addProduct = function (data) {
+		$scope.addProduct = function (data) {			
 			ProductService.postProduct(data, function (response) {
 				$mdDialog.hide(data);
 				toastr.success(response.message);
 				resultModal.items = response.data;
 
+			}),
+				function (error) {
+		
+				};
+		};
+		
+		//Função de editar produto
+		$scope.editProduct = function (data) {
+			ProductService.putProduct(data, function (response) {
+			$mdDialog.hide(data);
+			toastr.success(response.message);
+			retornoModal.usuarios = response.data;
+				
 			}),
 				function (error) {
 		
